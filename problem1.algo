@@ -1,0 +1,39 @@
+ALGORITHM sum_of_distinct_elements
+VAR
+  arr1 : ARRAY := [3, 1, 7, 9]
+  arr2 : ARRAY := [2, 4, 1, 9, 3]
+  sum : INTEGER := 0
+  i, j : INTEGER
+  found : BOOLEAN
+
+BEGIN
+  // Step 1: Check arr1 elements not in arr2
+  FOR i FROM 0 TO LENGTH(arr1) - 1 DO
+    found := false
+    FOR( j FROM 0 TO LENGTH(arr2) - 1 )DO
+      IF (arr1[i] = arr2[j]) THEN
+        found := true
+        BREAK
+      END_IF
+    END_FOR
+    IF (NOT found )THEN
+      sum := sum + arr1[i]
+    END_IF
+  END_FOR
+
+  // Step 2: Check arr2 elements not in arr1
+  FOR (i FROM 0 TO LENGTH(arr2) - 1) DO
+    found := false
+    FOR (j FROM 0 TO LENGTH(arr1) - 1) DO
+      IF (arr2[i] = arr1[j]) THEN
+        found := true
+        BREAK
+      END_IF
+    END_FOR
+    IF (NOT found) THEN
+      sum := sum + arr2[i]
+    END_IF
+  END_FOR
+
+  write ("Sum of distinct elements = ", sum)
+END
